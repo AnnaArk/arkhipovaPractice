@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 public class Sum {
 
     @Test
-    private static void valid_Sum(){
+    public void valid_Sum(){
         Assert.assertEquals(sum(2,4),6,"Sum passed");
 
     }
