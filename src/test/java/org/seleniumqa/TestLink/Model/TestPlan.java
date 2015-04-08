@@ -11,4 +11,3 @@ public class TestPlan {
     public boolean pub = true;
 }
 
-https://github.com/vivena0509/arkhipovaPractice.git
