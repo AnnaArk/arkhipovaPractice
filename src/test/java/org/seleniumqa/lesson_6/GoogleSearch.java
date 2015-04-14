@@ -38,6 +38,7 @@ public class GoogleSearch {
 
         WebElement seleniumLink = driver.findElement(By.xpath(".//*[@id='rso']/div/li[1]/div/h3/a"));
 
+
         Assert.assertEquals((seleniumLink.getText().toString().toString().contains("Selenium")),true);
 
     }

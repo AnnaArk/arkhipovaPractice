@@ -14,6 +14,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by admin on 08.04.2015.
  */
@@ -23,12 +25,14 @@ public class TestCases {
 
     @BeforeTest
 
-    public void login(User user){
+    public void login (){
 
         driver = new FirefoxDriver();
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(new User());
-
+        User myuser = new User();
+        loginPage.open();
+        loginPage.login(myuser.name, myuser.password);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     };
 
 
@@ -38,46 +42,47 @@ public class TestCases {
 
 
         HomePage homePage = new HomePage(driver);
+
         TestPlanManagPage testPlanManagPage = homePage.openTestPlanManagPage();
         TestPlanEditPage editPage = testPlanManagPage.createTestPlan();
 
-        TestPlan testPlan = new TestPlan();
+//        TestPlan testPlan = new TestPlan();
+//
+//        editPage.createTestPlan(testPlan);
 
-        editPage.createTestPlan(testPlan);
-
-        Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
-        //*Функция удалить однозначно зависит от ассерт,
-        // если ассерт тру, тогда означает, что тест план создался
-        // Можно писать несколько асертов, если нужно пошаговое выполнения и проверка(если он фейл дальше не пойдёт)
-        // Можно писать, когда каждый след шаг зависит от предыдущего
-        //
-        deleteTestPLan(testPlan);
+//        Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
+//        //*Функция удалить однозначно зависит от ассерт,
+//        // если ассерт тру, тогда означает, что тест план создался
+//        // Можно писать несколько асертов, если нужно пошаговое выполнения и проверка(если он фейл дальше не пойдёт)
+//        // Можно писать, когда каждый след шаг зависит от предыдущего
+//        //
+//        deleteTestPLan(testPlan);
 
     }
 
-    @AfterTest
+//    @AfterTest
 
     //выполняется, когда тест выполняется как-угодно
 
-    public void shutEnv(){
-        logout();
-        if(driver == null){
-            driver.quit();
-        }
-    }
+//    public void shutEnv(){
+//        logout();
+//        if(driver == null){
+//            driver.quit();
+//        }
+//    }
 
-    public void deleteTestPLan(TestPlan testPlan){
-        TestPlanManagPage managmentPage = new TestPlanManagPage(driver);
-        managmentPage.deleteTestPlan(testPlan);
+//    public void deleteTestPLan(TestPlan testPlan){
+//        TestPlanManagPage managmentPage = new TestPlanManagPage(driver);
+//        managmentPage.deleteTestPlan(testPlan);
+//
+//    }
 
-    }
-
-    public void logout(){
-
-        HomePage homePage = new HomePage();
-        homePage.logout();
-
-    }
+//    public void logout(){
+//
+//        HomePage homePage = new HomePage();
+//        homePage.logout();
+//
+//    }
 
 
 }
