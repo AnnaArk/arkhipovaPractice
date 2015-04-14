@@ -1,7 +1,5 @@
 package org.seleniumqa.TestLink.Pages;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,15 +14,28 @@ public class HomePage {
         this.driver=driver;
     }
 
-    public TestPlanManagPage openTestPlanManagPage(){
+    public WebElement elementIsLocated(By element){
 
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        try {
+            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        }
+        catch (StaleElementReferenceException se){
+            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        }
+        catch (NoSuchElementException nse){
+            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        }
+    }
+
+    public void openTestPlanManagPage(){
+
+        driver.switchTo().frame("mainframe");
         System.out.println(driver.getPageSource());
-        WebDriverWait wdw = new WebDriverWait(driver, 5);
-        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.id("test_plan_mgmt_topics")));
-        WebElement testPlanButton = driver.findElement(By.linkText("lib/plan/planView.php"));
-
+        WebElement testPlanButton = elementIsLocated(By.xpath("//*[@id=\"test_plan_mgmt_topics\"]/a[1]"));
         testPlanButton.click();
-        return null;
+//        return null;
 
     }
 }
