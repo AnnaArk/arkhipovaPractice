@@ -5,7 +5,7 @@ package org.seleniumqa.TestLink.Model;
  */
 public class TestPlan {
 
-    public String name = "Name";
+    public String name = "zzzName";
     public String description = "Any test plan";
     public boolean active = true;
     public boolean pub = true;

@@ -46,11 +46,12 @@ public class TestCases {
         TestPlanManagPage testPlanManagPage = homePage.openTestPlanManagPage();
         TestPlanEditPage editPage = testPlanManagPage.createTestPlan();
 
-//        TestPlan testPlan = new TestPlan();
-//
-//        editPage.createTestPlan(testPlan);
+        TestPlan testPlan = new TestPlan();
 
-//        Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
+        editPage.createTestPlan(testPlan);
+
+        Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
+
 //        //*Функция удалить однозначно зависит от ассерт,
 //        // если ассерт тру, тогда означает, что тест план создался
 //        // Можно писать несколько асертов, если нужно пошаговое выполнения и проверка(если он фейл дальше не пойдёт)

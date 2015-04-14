@@ -10,6 +10,8 @@ public class HomePage {
 
     WebDriver driver;
 
+    WebElement testPlanButton;
+
     public HomePage(WebDriver driver) {
         this.driver=driver;
     }
@@ -18,7 +20,7 @@ public class HomePage {
 
         driver.switchTo().frame("mainframe");
 //        System.out.println(driver.getPageSource());   // used for debugging
-        WebElement testPlanButton = driver.findElement(By.xpath("//*[@id=\"test_plan_mgmt_topics\"]/a[1]"));
+        testPlanButton = driver.findElement(By.xpath("//*[@id=\"test_plan_mgmt_topics\"]/a[1]"));
         testPlanButton.click();
 
         return new TestPlanManagPage(driver);
