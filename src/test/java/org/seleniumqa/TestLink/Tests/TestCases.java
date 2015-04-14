@@ -1,6 +1,6 @@
 package org.seleniumqa.TestLink.Tests;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+//import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.seleniumqa.TestLink.Model.TestPlan;
