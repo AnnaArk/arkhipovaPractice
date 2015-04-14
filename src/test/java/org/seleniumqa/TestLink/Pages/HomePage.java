@@ -14,28 +14,14 @@ public class HomePage {
         this.driver=driver;
     }
 
-    public WebElement elementIsLocated(By element){
-
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        try {
-            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
-        }
-        catch (StaleElementReferenceException se){
-            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
-        }
-        catch (NoSuchElementException nse){
-            return wait.until(ExpectedConditions.presenceOfElementLocated(element));
-        }
-    }
-
-    public void openTestPlanManagPage(){
+    public TestPlanManagPage openTestPlanManagPage(){
 
         driver.switchTo().frame("mainframe");
-        System.out.println(driver.getPageSource());
-        WebElement testPlanButton = elementIsLocated(By.xpath("//*[@id=\"test_plan_mgmt_topics\"]/a[1]"));
+//        System.out.println(driver.getPageSource());   // used for debugging
+        WebElement testPlanButton = driver.findElement(By.xpath("//*[@id=\"test_plan_mgmt_topics\"]/a[1]"));
         testPlanButton.click();
-//        return null;
+
+        return new TestPlanManagPage(driver);
 
     }
 }
