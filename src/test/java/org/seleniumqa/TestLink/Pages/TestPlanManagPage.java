@@ -33,11 +33,14 @@ public class TestPlanManagPage {
 
         WebElement testPlansTable = driver.findElement(By.id("item_view"));
 
+// Create list of all rows from the table
         List<WebElement> testPlansTableRows = testPlansTable.findElements(By.tagName("tr"));
 
+// Checking all 1st columns from the returned list of rows
         for (int i = 1; i < testPlansTableRows.size(); i++) {
             WebElement testPlanLink = testPlansTableRows.get(i).findElement(By.xpath("td/a"));
 
+//If find out name of Test Plan remmember index of the row for future using
             if (testPlanLink.getText().equals(testPlan.name)){
                 index = i;
                 return true;
