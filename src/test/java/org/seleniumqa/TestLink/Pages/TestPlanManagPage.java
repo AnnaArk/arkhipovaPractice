@@ -15,6 +15,7 @@ public class TestPlanManagPage {
     WebDriver driver;
 
     WebElement createTestPlanButton;
+    int index;
 
     public TestPlanManagPage(WebDriver driver) {
         this.driver = driver;
@@ -29,7 +30,6 @@ public class TestPlanManagPage {
     }
 
     public boolean isTestPlanPresent(TestPlan testPlan){
-        int index = 0;
 
         WebElement testPlansTable = driver.findElement(By.id("item_view"));
 
@@ -39,11 +39,25 @@ public class TestPlanManagPage {
             WebElement testPlanLink = testPlansTableRows.get(i).findElement(By.xpath("td/a"));
 
             if (testPlanLink.getText().equals(testPlan.name)){
+                index = i;
                 return true;
             }
         }
-
         return false;
+    }
 
+    public void DeleteTestPlan(){
+
+        WebElement testPlansTable = driver.findElement(By.id("item_view"));
+
+        //locating row to delete (by index of created item)
+        WebElement rowToDelete = testPlansTable.findElement(By.xpath("tbody/tr[position() = " + index + "]"));
+
+        //locating delete button in the row (eighth column)
+        WebElement deleteButton = rowToDelete.findElement(By.xpath("td[position()=8]/img"));
+        deleteButton.click();
+
+        WebElement deleteYesButton = driver.findElement(By.id("ext-gen20"));
+        deleteYesButton.click();
     }
 }

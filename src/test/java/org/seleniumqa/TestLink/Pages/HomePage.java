@@ -16,6 +16,10 @@ public class HomePage {
         this.driver=driver;
     }
 
+    public void goToHome(){
+        driver.get("http://demo.testlink.org/latest/index.php");
+    }
+
     public TestPlanManagPage openTestPlanManagPage(){
 
         driver.switchTo().frame("mainframe");
@@ -24,6 +28,10 @@ public class HomePage {
         testPlanButton.click();
 
         return new TestPlanManagPage(driver);
+    }
 
+    public void logOut(){
+        driver.switchTo().frame("titlebar");
+        driver.findElement(By.xpath("/html/body/div[2]/span[2]/a[2]/img")).click();
     }
 }

@@ -57,20 +57,20 @@ public class TestCases {
 //        // Можно писать несколько асертов, если нужно пошаговое выполнения и проверка(если он фейл дальше не пойдёт)
 //        // Можно писать, когда каждый след шаг зависит от предыдущего
 //        //
-//        deleteTestPLan(testPlan);
+       testPlanManagPage.DeleteTestPlan();
 
     }
 
-//    @AfterTest
+    @AfterTest
 
     //выполняется, когда тест выполняется как-угодно
 
-//    public void shutEnv(){
-//        logout();
-//        if(driver == null){
-//            driver.quit();
-//        }
-//    }
+    public void shutEnv(){
+        logout();
+        if(driver == null){
+            driver.quit();
+        }
+    }
 
 //    public void deleteTestPLan(TestPlan testPlan){
 //        TestPlanManagPage managmentPage = new TestPlanManagPage(driver);
@@ -78,12 +78,13 @@ public class TestCases {
 //
 //    }
 
-//    public void logout(){
-//
-//        HomePage homePage = new HomePage();
-//        homePage.logout();
-//
-//    }
+    public void logout(){
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToHome();
+        homePage.logOut();
+
+    }
 
 
 }
