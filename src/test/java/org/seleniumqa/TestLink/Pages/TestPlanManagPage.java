@@ -49,7 +49,7 @@ public class TestPlanManagPage {
         return false;
     }
 
-    public void DeleteTestPlan(){
+    public void DeleteTestPlan()  {
 
         WebElement testPlansTable = driver.findElement(By.id("item_view"));
 
