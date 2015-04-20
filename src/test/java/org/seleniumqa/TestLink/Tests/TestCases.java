@@ -53,9 +53,10 @@ public class TestCases {
 
         TestSuite testSuite = new TestSuite();
         specificationPage.createSuite(testSuite);
+
+        specificationPage.openTestSuite(testSuite);
     }
 
-    @Test
 
     public void createTestCase(){
         SpecificationPage specificationPage = new SpecificationPage(driver);
