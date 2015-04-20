@@ -41,7 +41,7 @@ public class SpecificationPage extends AbstractPage {
         driver.findElement(saveSuiteButton).click();
     }
 
-    public void openTestSuite(TestSuite suite){
+    public void openTestSuite(TestSuite suite){   //test
         switchToMainFrame();
         switchToTreeFrame();
         driver.findElements(searchTestSuite)
