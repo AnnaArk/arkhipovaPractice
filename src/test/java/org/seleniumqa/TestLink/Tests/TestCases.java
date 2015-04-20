@@ -46,7 +46,7 @@ public class TestCases {
         Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
     }
 
-    @Test
+    //@Test
     public void createTestSpecification() {
         SpecificationPage specificationPage = new SpecificationPage(driver);
         specificationPage.open();
@@ -57,12 +57,15 @@ public class TestCases {
         specificationPage.openTestSuite(testSuite);
     }
 
-
+    @Test
     public void createTestCase(){
         SpecificationPage specificationPage = new SpecificationPage(driver);
         specificationPage.open();
 
         TestSuite testSuite = new TestSuite();
+        specificationPage.createSuite(testSuite);
+        specificationPage.openTestSuite(testSuite);
+
         specificationPage.createTestCase(testSuite);
 
     }
