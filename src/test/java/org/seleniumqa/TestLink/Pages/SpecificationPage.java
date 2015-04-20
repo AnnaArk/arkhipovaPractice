@@ -20,6 +20,9 @@ public class SpecificationPage extends AbstractPage {
     private static final By saveSuiteButton = By.name("add_testsuite_button");
     private static final By createTestCaseBtn = By.xpath(".//*[@id='create_tc']");
     private static final By testCaseName = By.id("testcase_name");
+    private static final By saveCaseBtn = By.id("do_create_button");
+
+    //private static final By createCaseButton = By.id("create_tc");
 //    private static final By searchTestSuite = By.xpath(".//*[@id='filters']/table/tbody/tr[3]/td[2]/select");
 
 
@@ -54,6 +57,8 @@ public class SpecificationPage extends AbstractPage {
         driver.findElement(actionsBtn).click();
         driver.findElement(createTestCaseBtn).click();
         driver.findElement(testCaseName).sendKeys(testCase.name);
+        driver.findElement(saveCaseBtn).click();
+
 
     }
 }
