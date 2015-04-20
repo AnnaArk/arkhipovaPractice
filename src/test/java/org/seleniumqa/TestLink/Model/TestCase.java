@@ -6,4 +6,5 @@ package org.seleniumqa.TestLink.Model;
 public class TestCase {
 
     public String name = "TestCase1";
+
 }

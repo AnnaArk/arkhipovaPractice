@@ -46,17 +46,6 @@ public class TestCases {
         Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
     }
 
-    //@Test
-    public void createTestSpecification() {
-        SpecificationPage specificationPage = new SpecificationPage(driver);
-        specificationPage.open();
-
-        TestSuite testSuite = new TestSuite();
-        specificationPage.createSuite(testSuite);
-
-        specificationPage.openTestSuite(testSuite);
-    }
-
     @Test
     public void createTestCase(){
         SpecificationPage specificationPage = new SpecificationPage(driver);
@@ -70,9 +59,6 @@ public class TestCases {
 
     }
 
-    public void createTestStep(){
-
-    }
 
     @Test
     public void deleteTestPlanTest() {
@@ -89,7 +75,7 @@ public class TestCases {
     @AfterTest
     public void shutEnv() {
         logout();
-        if (driver == null) {
+        if (driver != null) {
             driver.quit();
         }
     }
@@ -99,7 +85,6 @@ public class TestCases {
         homePage.goToHome();
         homePage.logOut();
     }
-
 
 }
 
