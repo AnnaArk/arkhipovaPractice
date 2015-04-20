@@ -1,14 +1,13 @@
 package org.seleniumqa.TestLink.Tests;
 
 //import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.seleniumqa.TestLink.Model.TestPlan;
+import org.seleniumqa.TestLink.Model.TestSuite;
 import org.seleniumqa.TestLink.Model.User;
-import org.seleniumqa.TestLink.Pages.HomePage;
-import org.seleniumqa.TestLink.Pages.LoginPage;
-import org.seleniumqa.TestLink.Pages.TestPlanEditPage;
-import org.seleniumqa.TestLink.Pages.TestPlanManagPage;
+import org.seleniumqa.TestLink.Pages.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -24,8 +23,7 @@ public class TestCases {
     WebDriver driver;
 
     @BeforeTest
-
-    public void login (){
+    public void login() {
 
         driver = new FirefoxDriver();
         LoginPage loginPage = new LoginPage(driver);
@@ -33,57 +31,69 @@ public class TestCases {
         loginPage.open();
         loginPage.login(myuser.name, myuser.password);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    };
-
+    }
 
     @Test
-
-    public void positiveTest(){
-
-
+    public void createTestPlanTest() {
         HomePage homePage = new HomePage(driver);
 
         TestPlanManagPage testPlanManagPage = homePage.openTestPlanManagPage();
         TestPlanEditPage editPage = testPlanManagPage.createTestPlan();
 
         TestPlan testPlan = new TestPlan();
-
         editPage.createTestPlan(testPlan);
-
+        // checking if test plan exists on the page
         Assert.assertTrue(testPlanManagPage.isTestPlanPresent(testPlan));
+    }
 
-//        //*Функция удалить однозначно зависит от ассерт,
-//        // если ассерт тру, тогда означает, что тест план создался
-//        // Можно писать несколько асертов, если нужно пошаговое выполнения и проверка(если он фейл дальше не пойдёт)
-//        // Можно писать, когда каждый след шаг зависит от предыдущего
-//        //
-       testPlanManagPage.DeleteTestPlan();
+    @Test
+    public void createTestSpecification() {
+        SpecificationPage specificationPage = new SpecificationPage(driver);
+        specificationPage.open();
+
+        TestSuite testSuite = new TestSuite();
+        specificationPage.createSuite(testSuite);
+    }
+
+    @Test
+
+    public void createTestCase(){
+        SpecificationPage specificationPage = new SpecificationPage(driver);
+        specificationPage.open();
+
+        TestSuite testSuite = new TestSuite();
+        specificationPage.createTestCase(testSuite);
 
     }
 
+    public void createTestStep(){
+
+    }
+
+    @Test
+    public void deleteTestPlanTest() {
+        HomePage homePage = new HomePage(driver);
+
+        TestPlanManagPage testPlanManagPage = homePage.openTestPlanManagPage();
+
+        TestPlan testPlan = new TestPlan();
+        testPlanManagPage.DeleteTestPlan(testPlan);
+        // checking if test plan was deleted
+        Assert.assertFalse(testPlanManagPage.isTestPlanPresent(testPlan));
+    }
+
     @AfterTest
-
-    //выполняется, когда тест выполняется как-угодно
-
-    public void shutEnv(){
+    public void shutEnv() {
         logout();
-        if(driver == null){
+        if (driver == null) {
             driver.quit();
         }
     }
 
-//    public void deleteTestPLan(TestPlan testPlan){
-//        TestPlanManagPage managmentPage = new TestPlanManagPage(driver);
-//        managmentPage.deleteTestPlan(testPlan);
-//
-//    }
-
-    public void logout(){
-
+    public void logout() {
         HomePage homePage = new HomePage(driver);
         homePage.goToHome();
         homePage.logOut();
-
     }
 
 
