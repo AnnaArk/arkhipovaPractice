@@ -2,6 +2,7 @@ package org.seleniumqa.TestLink.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.seleniumqa.TestLink.Model.TestCase;
 import org.seleniumqa.TestLink.Model.TestSuite;
 
@@ -19,7 +20,8 @@ public class SpecificationPage extends AbstractPage {
     private static final By saveSuiteButton = By.name("add_testsuite_button");
     private static final By createTestCaseBtn = By.xpath(".//*[@id='create_tc']");
     private static final By testCaseName = By.id("testcase_name");
-    private static final By searchTestSuite = By.xpath(".//*[@id='filters']/table/tbody/tr[3]/td[2]/select");
+//    private static final By searchTestSuite = By.xpath(".//*[@id='filters']/table/tbody/tr[3]/td[2]/select");
+
 
     public SpecificationPage (WebDriver driver){
         super(driver);
@@ -44,8 +46,7 @@ public class SpecificationPage extends AbstractPage {
     public void openTestSuite(TestSuite suite){   //test
         switchToMainFrame();
         switchToTreeFrame();
-        driver.findElements(searchTestSuite)
-
+        driver.findElement(By.partialLinkText(suite.name)).click();
     }
 
     public void createTestCase(TestSuite testCase){
